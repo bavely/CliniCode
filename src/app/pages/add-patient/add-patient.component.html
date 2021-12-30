@@ -1,0 +1,86 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row position-relative mt-5">
+            <div class="col">
+                <p class="h2">Add Patient</p>
+            </div>
+        </div>
+        <div class="row ">
+            <div class="col">
+                <hr>
+            </div>
+        </div>
+
+
+        <form #postForm="ngForm" (ngSubmit)="onPtAdd(postForm.value)">
+            <div class="form-group  ">
+                <div class=" row ">
+                    <div class="col">
+                        <label for="Fname" class="text-monospace">First name<span class="span" style="color: crimson;">*</span></label>
+                        <input class="form-control" type="text" id="FName" ngModel name="FName" required>
+                    </div>
+                    <div class="col">
+                        <label for="LName" class="text-monospace">Last name<span class="span" style="color: crimson;">*</span></label>
+                        <input class="form-control" type="text" id="LName" ngModel name="LName" required>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row ">
+                <div class="col">
+                    <label for="DOB" class="text-monospace">Date Of Birth<span class="span" style="color: crimson;">*</span></label>
+                    <input class="form-control" type="date" id="DOB" ngModel name="DOB" required>
+                </div>
+                <div class="col">
+                    <label for="email" class="text-monospace">Email Address</label>
+                    <input class="form-control" type="email" id="email" ngModel email name="email">
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col">
+                    <label for="cphone" class="text-monospace">Cell Phone</label>
+                    <input class="form-control" type="tel" id="cphone" ngModel name="cphone">
+                </div>
+                <div class="col">
+                    <label for="hphone" class="text-monospace">Home Phone</label>
+                    <input class="form-control" type="tel" id="hphone" ngModel name="hphone">
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col">
+                    <div class="form-group form-check">
+                        <input type="checkbox" class="form-check-input" id="exampleCheck1" [(ngModel)]="sendtext" name="sendtext">
+                        <label class="form-check-label text-monospace" for="exampleCheck1">Send Texts To This Patient</label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col">
+                    <label for="Referral_Date" class="text-monospace">Referral Date<span class="span" style="color: crimson;">*</span></label>
+                    <input class="form-control" type="date" id="Referral_Date" ngModel name="Referral_Date">
+                </div>
+                <div class="col">
+                    <label for="Order_Type" class="text-monospace">Order Type<span class="span" style="color: crimson;">*</span></label>
+                    <input class="form-control" type="tel" id="Order_Type" ngModel name="Order_Type">
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col">
+                    <label for="MD_Name" class="text-monospace">MD Name<span class="span" style="color: crimson;">*</span></label>
+                    <input class="form-control" type="tel" id="MD_Name" ngModel name="MD_Name">
+                </div>
+                <div class="col">
+                    <label for="MD_NPI" class="text-monospace">MD NPI<span class="span" style="color: crimson;">*</span></label>
+                    <input class="form-control" type="tel" id="MD_NPI" ngModel name="MD_NPI">
+                </div>
+            </div>
+            <label for="Order_Type" class="text-monospace" searchAddressLabel>Address<span class="span" style="color: crimson;">*</span></label>
+            <mat-google-maps-autocomplete class="form-group" [appearance]="appearance.OUTLINE" (onAutocompleteSelected)="onAutocompleteSelected($event)" (onLocationSelected)="onLocationSelected($event)" (onGermanAddressMapped)="onGermanAddressMapped($event)">
+            </mat-google-maps-autocomplete>
+            <div class="form-group ">
+                <label for="exampleFormControlTextarea1" id="cssim">Allergy<span class="span" style="color: crimson;"> *</span></label>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" id="Allergy" ngModel name="Allergy" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-info mb-5">Save</button>
+        </form>
+    </div>
+</div>

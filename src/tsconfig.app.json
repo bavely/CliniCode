@@ -1,0 +1,36 @@
+{
+  "compilerOptions": {
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "target": "es5",
+    "lib": [
+      "es2016",
+      "dom"
+    ],
+    "outDir": "../out-tsc/app",
+    "module": "es2015",
+    "baseUrl": "",
+    "types": ["node"]
+  },
+  "exclude": [
+    "test.ts",
+    "**/*.spec.ts"
+  ],
+  
+    "extends": "../tsconfig.json",
+    "files": [
+      "./main.ts",
+      "./polyfills.ts"
+    ],
+    "include": [
+      "src/**/*.d.ts",
+      "./app/**/*.module.ts"
+    ],
+    "angularCompilerOptions": {
+      "enableIvy": false
+    }
+  
+}

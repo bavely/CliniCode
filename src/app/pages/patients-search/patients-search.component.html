@@ -1,0 +1,74 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+<div class="col-md-12">
+
+        <div class="header">
+            <legend>Search to add patient</legend>
+        </div>
+        <div class="content">
+            <form #postForm="ngForm" (ngSubmit)="onPtSearch(postForm.value)">
+                <div class="form-group col-sm-6">
+                        <input type="text" class="form-control" placeholder="First name" ngModel name="FName">
+                </div>
+                <div class="form-group col-sm-6">
+                        <input type="text" class="form-control" placeholder="Last name" ngModel name="LName">
+                </div>
+                <div class="form-group col-sm-6">
+                        <input type="text" class="form-control" placeholder="DOB">
+                </div>
+                <div class="form-group col-sm-6">
+                        <input type="text" class="form-control" placeholder="MRN" ngModel name="MRN">
+                </div>
+                <div class="form-group col-sm-6">
+                        <input type="text" class="form-control" placeholder="Phone #">
+                </div>
+                <div class="form-group col-sm-6">
+                        <input type="text" class="form-control" placeholder="Email">
+                </div>
+                <button type="submit" class="btn btn-info mb-5"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-search" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+  <path fill-rule="evenodd" d="M10.442 10.442a1 1 0 0 1 1.415 0l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1 1 0 0 1 0-1.415z"/>
+  <path fill-rule="evenodd" d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z"/>
+</svg>  Search</button>
+            </form>
+
+            <div class="alert alert-warning mt-3 p-3" role="alert" *ngIf="(clinicount == '0' && emrcount > '0')">The patient(s) doesn't exist in CliniVoy database please click "Add Patient" to add to CliniVoy.</div>
+            <div class="alert alert-warning mt-3 p-3" role="alert" *ngIf="emrcount == '0' && clinicount > '0'">The patient(s) doesn't exist in CareTend database please click "Add Patient" to add to CareTend.</div>
+            <div class="alert alert-warning mt-3 p-3" role="alert" *ngIf="emrcount == '0' && clinicount == '0'">The patient(s) exists neither in CliniVoy nor CareTend databases please click <a href="#/pages/AddPatient">here</a> to add a new patient.</div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <p class="alert alert-info font-weight-bold text-center" role="alert" *ngIf="emrcount > '0'">Patients From EMR</p>
+                    <div class="shadow w-auto p-3 mb-5 bg-white rounded rounded-lg " *ngFor="let patient of temrpatients ;let i=index;">
+                        <p>FirstName: {{patient.FirstName}}</p>
+                        <hr>
+                        <p> LastName: {{patient.LastName}}</p>
+                        <p>{{patient.indicator}}</p>
+                        <hr>
+                        <p>MedicalRecordNo (MRN): {{patient.MedicalRecordNo}} </p>
+                        <button type="button" class="float-right btn btn-info" (click)="onFromcttocli(i)" *ngIf="patient.indicator">Add Patient</button>
+                        <button type="button" class="position-relative btn btn-light">More Info</button>
+                    </div>
+                </div>
+                <!-- Patients From CliniVoy -->
+                <div class="col-sm-6">
+                    <p class="alert alert-info font-weight-bold text-center" role="alert" *ngIf="clinicount > '0'">Patients From CliniVoy</p>
+                    <div class="shadow w-auto p-3 mb-5 bg-white rounded rounded-lg " *ngFor="let data of tclinipatients ;let indexOfelement=index;">
+                        <p>FirstName: {{data.FirstName}}</p>
+                        <hr>
+                        <p>LastName: {{data.LastName}}</p>
+                        <p>{{data.indicator}}</p>
+                        <hr>
+                        <p> MedicalRecordNo (MRN): {{data.MedicalRecordNo}} </p>
+                        <button type="button" class="float-right btn btn-info" *ngIf="data.indicator" (click)="onFromclict(indexOfelement)">Add Patient</button>
+                        <button type="button" class="position-relative btn btn-light">More Info</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+</div> <!-- end col-md-12 -->
+</div> <!-- end row -->
+
+</div>
+</div>
